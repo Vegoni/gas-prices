@@ -128,7 +128,7 @@ function App() {
   return (
     <div
       style={{
-        padding: 24,
+        padding: "clamp(12px, 4vw, 24px)",
         fontFamily: "system-ui, sans-serif",
         color: "#e5e7eb",
         maxWidth: 1100,
@@ -146,7 +146,7 @@ function App() {
         }}
       >
         <div>
-          <h1 style={{ margin: 0, fontSize: 28 }}>
+          <h1 style={{ margin: 0, fontSize: "clamp(22px, 6vw, 28px)", lineHeight: 1.2 }}>
             {compareArea
               ? `${titleCase(area)} vs. ${titleCase(compareArea)}`
               : area === "U.S."
@@ -157,7 +157,7 @@ function App() {
             Regular unleaded · weekly EIA data
           </p>
         </div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 8, minWidth: 220 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 8, flex: "1 1 220px" }}>
           <PickerRow label="Area" color={PRIMARY_COLOR}>
             <select
               value={area}
@@ -200,7 +200,7 @@ function App() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
             gap: 12,
             marginBottom: 24,
           }}
@@ -254,13 +254,15 @@ function App() {
             key={r.label}
             onClick={() => setRange(r)}
             style={{
-              padding: "6px 14px",
+              padding: "10px 18px",
               borderRadius: 6,
               border: "1px solid #374151",
               background: range.label === r.label ? "#4ade80" : "transparent",
               color: range.label === r.label ? "#0a0a0a" : "#e5e7eb",
               cursor: "pointer",
               fontWeight: 500,
+              flex: "1 1 auto",
+              minWidth: 60,
             }}
           >
             {r.label}
@@ -271,10 +273,10 @@ function App() {
       <div
         style={{
           width: "100%",
-          height: 420,
+          height: "clamp(280px, 55vh, 420px)",
           background: "#111827",
           borderRadius: 8,
-          padding: 16,
+          padding: "clamp(8px, 2vw, 16px)",
           boxSizing: "border-box",
         }}
       >
@@ -360,7 +362,7 @@ const selectStyle = {
   color: "#e5e7eb",
   border: "1px solid #374151",
   borderRadius: 6,
-  padding: "8px 12px",
+  padding: "10px 12px",
   fontSize: 14,
   cursor: "pointer",
   width: "100%",
@@ -374,7 +376,7 @@ function PickerRow({ label, color, children }) {
           display: "flex",
           alignItems: "center",
           gap: 6,
-          minWidth: 110,
+          minWidth: 100,
           color: "#9ca3af",
           fontSize: 12,
           textTransform: "uppercase",
