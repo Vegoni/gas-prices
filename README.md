@@ -114,4 +114,4 @@ Ideas:
 - [ ] Code-split Recharts to shrink the JS bundle (current warning at ~553KB minified)
 - [ ] Loading skeletons in place of the plain "Loading..." text
 - [ ] Custom domain instead of `*.workers.dev`
-- [ ] Light theme toggle
+- [ ] Light theme toggle...maybe
