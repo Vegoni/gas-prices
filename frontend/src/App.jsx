@@ -40,6 +40,7 @@ function App() {
   const [area, setArea] = useState("U.S.");
   const [compareArea, setCompareArea] = useState("");
   const [compareData, setCompareData] = useState([]);
+  const [showPaddInfo, setShowPaddInfo] = useState(false);
 
   useEffect(() => {
     fetch(`${API_URL}/api/areas`)
@@ -191,8 +192,27 @@ function App() {
                 ))}
             </select>
           </PickerRow>
+          <button
+            type="button"
+            onClick={() => setShowPaddInfo((s) => !s)}
+            style={{
+              alignSelf: "flex-end",
+              background: "none",
+              border: "none",
+              color: "#9ca3af",
+              fontSize: 12,
+              cursor: "pointer",
+              padding: "4px 0",
+              textDecoration: "underline",
+              textUnderlineOffset: 2,
+            }}
+          >
+            {showPaddInfo ? "Hide PADD info" : "What's a PADD?"}
+          </button>
         </div>
       </header>
+
+      {showPaddInfo && <PaddInfoPanel onClose={() => setShowPaddInfo(false)} />}
 
       {error && <p style={{ color: "#f87171" }}>Error: {error}</p>}
 
@@ -360,6 +380,73 @@ const selectStyle = {
   cursor: "pointer",
   width: "100%",
 };
+
+function PaddInfoPanel({ onClose }) {
+  const regions = [
+    ["PADD 1", "East Coast"],
+    ["PADD 2", "Midwest"],
+    ["PADD 3", "Gulf Coast"],
+    ["PADD 4", "Rocky Mountain"],
+    ["PADD 5", "West Coast"],
+  ];
+  return (
+    <div
+      style={{
+        background: "#111827",
+        border: "1px solid #1f2937",
+        borderRadius: 8,
+        padding: "16px 18px",
+        marginBottom: 24,
+        position: "relative",
+      }}
+    >
+      <button
+        type="button"
+        onClick={onClose}
+        aria-label="Close"
+        style={{
+          position: "absolute",
+          top: 8,
+          right: 10,
+          background: "none",
+          border: "none",
+          color: "#9ca3af",
+          fontSize: 22,
+          lineHeight: 1,
+          cursor: "pointer",
+          padding: 4,
+        }}
+      >
+        ×
+      </button>
+      <div
+        style={{
+          color: "#9ca3af",
+          fontSize: 12,
+          textTransform: "uppercase",
+          letterSpacing: 0.5,
+          marginBottom: 8,
+        }}
+      >
+        What's a PADD?
+      </div>
+      <p style={{ margin: "0 0 10px", fontSize: 14, lineHeight: 1.5, color: "#e5e7eb" }}>
+        <strong>PADD</strong> stands for <em>Petroleum Administration for Defense District</em>.
+        The U.S. is split into 5 regions for tracking petroleum data:
+      </p>
+      <ul style={{ margin: 0, paddingLeft: 18, fontSize: 14, lineHeight: 1.7, color: "#e5e7eb" }}>
+        {regions.map(([name, area]) => (
+          <li key={name}>
+            <strong style={{ color: PRIMARY_COLOR }}>{name}</strong> — {area}
+          </li>
+        ))}
+      </ul>
+      <p style={{ margin: "10px 0 0", fontSize: 12, color: "#9ca3af" }}>
+        The EIA reports weekly retail prices for each PADD, plus select sub-regions and states.
+      </p>
+    </div>
+  );
+}
 
 function AvgLabel({ viewBox, value }) {
   if (!viewBox) return null;
