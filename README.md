@@ -5,8 +5,8 @@ A personal dashboard for tracking U.S. gasoline and diesel prices using data fro
 ## Tech Stack
 
 - **Backend:** Python 3.12 + FastAPI
-- **Database:** SQLite (local dev)
-- **Frontend:** React (coming soon)
+- **Database:** SQLite 
+- **Frontend:** React 
 - **Data Source:** EIA API v2
 
 ## Quick Start (macOS)
