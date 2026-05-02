@@ -313,14 +313,7 @@ function App() {
                   y={stats.avg}
                   stroke="#9ca3af"
                   strokeDasharray="4 4"
-                  label={{
-                    value: `Avg  $${stats.avg.toFixed(2)}`,
-                    fill: "#e5e7eb",
-                    fontSize: 12,
-                    fontWeight: 500,
-                    position: "insideTopLeft",
-                    offset: 8,
-                  }}
+                  label={<AvgLabel value={`Avg $${stats.avg.toFixed(2)}`} />}
                 />
               )}
               <Line
@@ -367,6 +360,43 @@ const selectStyle = {
   cursor: "pointer",
   width: "100%",
 };
+
+function AvgLabel({ viewBox, value }) {
+  if (!viewBox) return null;
+  const { x, y, width } = viewBox;
+  const fontSize = 12;
+  const padX = 8;
+  const padY = 4;
+  const textWidth = value.length * 6.6;
+  const rectW = textWidth + padX * 2;
+  const rectH = fontSize + padY * 2;
+  const rectX = x + width - rectW - 4;
+  const rectY = y - rectH / 2;
+  return (
+    <g>
+      <rect
+        x={rectX}
+        y={rectY}
+        width={rectW}
+        height={rectH}
+        rx={4}
+        fill="#111827"
+        stroke="#374151"
+      />
+      <text
+        x={rectX + rectW - padX}
+        y={y}
+        textAnchor="end"
+        dominantBaseline="middle"
+        fill="#e5e7eb"
+        fontSize={fontSize}
+        fontWeight={500}
+      >
+        {value}
+      </text>
+    </g>
+  );
+}
 
 function PickerRow({ label, color, children }) {
   return (
