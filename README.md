@@ -99,7 +99,19 @@ frontend/                       # Coming soon
 
 ## What's Next
 
-- [ ] React frontend with Recharts
-- [ ] Scheduled auto-ingestion (APScheduler)
-- [ ] Regional PADD district views
-- [ ] Year-over-year comparisons
+Done:
+- [x] React frontend with Recharts
+- [x] Deploy: backend on Fly.io, frontend on Cloudflare Pages
+- [x] Mobile-friendly layout
+- [x] PADD explainer in the UI
+
+Ideas:
+- [ ] Scheduled auto-ingestion (APScheduler) so prices stay fresh without manual `python -m app.services.ingest`
+- [ ] Year-over-year comparisons (overlay "this date last year" on the chart)
+- [ ] Dedicated PADD regional view (e.g. a small US map breaking out the 5 districts)
+- [ ] Diesel and mid/premium grade toggle (currently hard-coded to regular gasoline)
+- [ ] Client-side cache of fetched series so flipping 1Y → 5Y → 1Y doesn't refetch
+- [ ] Code-split Recharts to shrink the JS bundle (current warning at ~553KB minified)
+- [ ] Loading skeletons in place of the plain "Loading..." text
+- [ ] Custom domain instead of `*.workers.dev`
+- [ ] Light theme toggle
